@@ -1,10 +1,11 @@
-from django.shortcuts import render
-from .models import Author, Quote
+from django.contrib.auth.forms import UserCreationForm
 
-def quotes_list(request):
-    quotes = Quote.objects.all()
-    return render(request, 'quotes/quotes_list.html', {'quotes': quotes})
-
-def author_detail(request, author_id):
-    author = Author.objects.get(id=author_id)
-    return render(request, 'quotes/author_detail.html', {'author': author})
+def register(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('login')
+    else:
+        form = UserCreationForm()
+    return render(request, 'registration/register.html', {'form': form})
