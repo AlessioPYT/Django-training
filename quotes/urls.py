@@ -7,7 +7,7 @@ from django.contrib.auth import views as auth_views
 urlpatterns = [
     path('add_author/', views.add_author, name='add_author'),
     path('add_quote/', views.add_quote, name='add_quote'),
-
+]
 
 urlpatterns = [
     path('admin/', admin.site.urls),
